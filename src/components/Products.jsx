@@ -1,6 +1,7 @@
 import styled from "styled-components"
-import { items } from "../data"
+// import { items } from "../data"
 import ProductDetails from "./ProductDetails"
+import { useCart } from "../providers/CartProvider";
  
 const Container = styled.div`
   display: flex;
@@ -12,13 +13,15 @@ const Container = styled.div`
 
 
 const Products = () => {
+  const cartContext = useCart();
+  console.log(cartContext.shoppingItems);
   return (
     <Container>
-      {items.map(item=>(
-        <ProductDetails item = {item}/>
+      {cartContext.shoppingItems.map((shoppingItems) => (
+        <ProductDetails shoppingItems={shoppingItems}  />
       ))}
-      </Container>
-  )
+    </Container>
+  );
 }
 
 export default Products

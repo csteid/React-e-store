@@ -1,4 +1,5 @@
 import  styled  from "styled-components"
+import { useCart } from "../providers/CartProvider";
 
 const Container = styled.div`
   flex: 1;
@@ -46,17 +47,19 @@ const Button = styled.button`
 
 
 // Use item prop from Products component
-const ProductDetails = ({item}) => {
+const ProductDetails = ({shoppingItems}) => {
+  const cartContext = useCart();
+  console.log(shoppingItems);
   return (
     <Container>
-     <Image src = {item.image}/>
-     <Info>
-        <Title>{item.title}</Title>
-        <Price>{item.price}</Price>
+      <Image src={shoppingItems.image} />
+      <Info>
+        <Title>{shoppingItems.title}</Title>
+        <Price>{shoppingItems.price}</Price>
         <Button> SHOP NOW</Button>
-     </Info>
+      </Info>
     </Container>
-  )
+  );
 }
 
 export default ProductDetails
